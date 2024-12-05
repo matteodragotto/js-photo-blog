@@ -18,7 +18,7 @@ axios.get(endpoint)
   
   
   row.innerHTML += `
-  <div class="col-4">
+  <div class="col-lg-4 col-md-6 col-sm-12">
           <div class="user-card">
             <img src="./assets/img/pin.svg" alt="pin" class="pin">
             <div class="image">
