@@ -3,3 +3,46 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-family: "Fredoka", serif;
+  font-style: italic;
+  background-image: url('../img/cork.png');
+}
+
+header {
+  background-image: url('../img/wall.png');
+  height: 140px;
+}
+
+header h1 {
+  font-size: 5.5rem;
+  font-weight: 500;
+}
+
+main {
+  background-image: url('../img/cork.png');
+  padding: 40px;
+}
+
+.user-card {
+  background-color: white;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  position: relative;
+}
+
+.pin {
+  position: absolute;
+  top: -2%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.text {
+  padding: 20px;
+}
+
+.image img{
+  width: 100%;
+}
