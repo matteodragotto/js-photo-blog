@@ -11,8 +11,16 @@ body {
 }
 
 header {
+  display: unset;
+}
+
+header .head-container{
   background-image: url('../img/wall.png');
-  height: 140px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  height: 100%;
+  
 }
 
 header h1 {
@@ -20,8 +28,7 @@ header h1 {
   font-weight: 500;
 }
 
-main {
-  
+main {  
   padding: 50px;
 }
 
