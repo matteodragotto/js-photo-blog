@@ -8,7 +8,11 @@ axios.get(endpoint)
   row.innerHTML = ''
   response.data.forEach(photo => printCard(photo))
  })
-
+ 
+ .catch (error => {
+  console.log(error);
+  
+ })
 
 
 
