@@ -15,7 +15,7 @@ axios.get(endpoint)
 
  function printCard(photo) {
   const {title, url} = photo
-  console.log(title, url);
+  
   
   row.innerHTML += `
   <div class="col-4">
@@ -25,8 +25,16 @@ axios.get(endpoint)
               <img src="${url}" alt="${url}">
             </div>
             <div class="text d-flex justify-content-start">
-              <p>${title}</p>
+              <p>${titleFormatting(title)}</p>
             </div>
           </div>
         </div>    `
+ }
+
+ function titleFormatting (title) {
+  let titleWords = title.split(" ")
+  for (let i = 0; i < titleWords.length; i++) {
+    titleWords[i] = titleWords[i][0].toUpperCase() + titleWords[i].substring(1).toLowerCase()
+  }
+  return titleWords.join(" ")
  }

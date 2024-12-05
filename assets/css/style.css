@@ -40,7 +40,8 @@ main {
 }
 
 .text {
-  padding: 10px;
+  padding-top: 10px;
+  height: 90px;
 }
 
 .image img{
