@@ -1,6 +1,7 @@
 const endpoint = 'https://jsonplaceholder.typicode.com/photos?_limit=6'
 const row = document.querySelector('.row')
 const overlay = document.querySelector('.overlay')
+const overImage = document.querySelector('.over-image')
 const btnClose = document.getElementById('close')
 const userPhoto = document.querySelector('.user-photo')
 
@@ -9,9 +10,12 @@ btnClose.addEventListener('click', () => {
   
 })
 
+/* Event Delegation alla row dato che aggiungiamo dinamicamente gli elementi */
 row.addEventListener('click', (event) => {
   if (event.target && event.target.classList.contains('user-photo')) {
+    overImage.innerHTML = ''
     overlay.classList.remove('d-none');
+    overImage.innerHTML = `<img src="${event.target.src}" alt="${event.target.src}" class="user-photo">`
   }
 });
 
