@@ -22,7 +22,7 @@ header h1 {
 
 main {
   background-image: url('../img/cork.png');
-  padding: 40px;
+  padding: 50px;
 }
 
 .user-card {
@@ -40,7 +40,7 @@ main {
 }
 
 .text {
-  padding: 20px;
+  padding: 10px;
 }
 
 .image img{

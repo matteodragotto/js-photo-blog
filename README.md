@@ -23,5 +23,16 @@ Rendi la pagina responsive, in modo che su mobile e tablet le foto si dispongano
 
 ------
 
+## Esecuzione:
+
+1. Creare la pagina html/css che useremo come base per creare le card in futuro con js (utilizzo di bootstrap con row e colonne per gestire il numero di card per riga)
+
+2. Inserisco l'api su thunder client e verifico che dati ricevo in risposta
+
+3. Tramite l'uso di axios in js creo uno script per prendere le immagini dall'api
+
+4. Destrutturo gli oggetti ricevuti e uso gli elementi necessari per compilare la card
+
+
 
 
