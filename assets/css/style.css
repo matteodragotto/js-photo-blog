@@ -47,6 +47,14 @@ main {
   padding: 20px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   position: relative;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.user-card:hover {
+  cursor: default;
+  transform: rotate(10deg);
+  transition: all 0.3s ease-in-out 0s;
+  box-shadow: rgba(0, 0, 0, 0.7) 4px 4px 6px;
 }
 
 .pin {
