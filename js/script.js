@@ -1,4 +1,4 @@
-const endpoint = 'https://jsonplaceholder.typicode.com/photos?_limit=6'
+const endpoint = 'https://jsonplaceholder.typicode.com/photos?_limit=144'
 const row = document.querySelector('.row')
 const overlay = document.querySelector('.overlay')
 const overImage = document.querySelector('.over-image')
@@ -19,44 +19,58 @@ row.addEventListener('click', (event) => {
   }
 });
 
-axios.get(endpoint)
- .then (response => {
-  console.log(response.data);  
-  row.innerHTML = ''
-  response.data.forEach(photo =>printCard(photo))
- })
- 
- .catch (error => {
-  console.log(error);
-  
- })
- 
- function printCard(photo) {
-  const {title, url} = photo
-  
-  row.innerHTML += `
-  <div class="col-lg-4 col-md-6 col-sm-12">
-          <div class="user-card">
-            <img src="./assets/img/pin.svg" alt="pin" class="pin">
-            <div class="image">
-              <img src="${url}" alt="${url}" class="user-photo">
-            </div>
-            <div class="text d-flex justify-content-start">
-              <p>${titleFormatting(title)}</p>
-            </div>
-          </div>
-        </div>   `
- }
- 
 
- function titleFormatting (title) {
-  let titleWords = title.split(" ")
-  for (let i = 0; i < titleWords.length; i++) {
-    titleWords[i] = titleWords[i][0].toUpperCase() + titleWords[i].substring(1).toLowerCase()
+let photoPerPage = 6;
+let photoNumber = 0;
+
+
+function loadCard () {
+  axios.get(endpoint)
+  .then (response => {
+   console.log(response.data);  
+   row.innerHTML = ''  
+   response.data.forEach(photo => {
+    if (photoNumber < photoPerPage) {
+      printCard(photo)
+      photoNumber++
+    }
+   })
+  })
+  
+  .catch (error => {
+   console.log(error);
+   
+  })
+  
+  function printCard(photo) {
+   const {title, url} = photo
+   
+   row.innerHTML += `
+   <div class="col-lg-4 col-md-6 col-sm-12">
+           <div class="user-card">
+             <img src="./assets/img/pin.svg" alt="pin" class="pin">
+             <div class="image">
+               <img src="${url}" alt="${url}" class="user-photo">
+             </div>
+             <div class="text d-flex justify-content-start">
+               <p>${titleFormatting(title)}</p>
+             </div>
+           </div>
+         </div>   `
   }
-  return titleWords.join(" ")
- }
-
+  
  
+  function titleFormatting (title) {
+   let titleWords = title.split(" ")
+   for (let i = 0; i < titleWords.length; i++) {
+     titleWords[i] = titleWords[i][0].toUpperCase() + titleWords[i].substring(1).toLowerCase()
+   }
+   return titleWords.join(" ")
+  }
+}
+
+
+
+ loadCard();
 
  

@@ -14,6 +14,8 @@
   height: 100%;
 }
 
+/* BODY */
+
 body {
   font-family: "Fredoka", serif;
   font-style: italic;
@@ -28,7 +30,7 @@ header .head-container{
   background-image: url('../img/wall.png');
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 10;
   height: 100%;
   
 }
@@ -55,7 +57,7 @@ main {
   transform: rotate(10deg);
   transition: all 0.3s ease-in-out 0s;
   box-shadow: rgba(0, 0, 0, 0.7) 4px 4px 6px;
-  z-index: 5;
+  z-index: 4;
 }
 
 .pin {
@@ -85,7 +87,7 @@ main {
   left: 0;
   margin: 0 auto;  
   background-color: rgba(0,0,0,0.5);
-  z-index: 5;
+  z-index: 15;
 }
 
 #close {
