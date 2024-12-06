@@ -4,6 +4,7 @@ const overlay = document.querySelector('.overlay')
 const overImage = document.querySelector('.over-image')
 const btnClose = document.getElementById('close')
 const userPhoto = document.querySelector('.user-photo')
+const loader = document.querySelector('.loading')
 
 btnClose.addEventListener('click', () => {
   overlay.classList.add('d-none')
@@ -25,27 +26,31 @@ let photoNumber = 0;
 
 
 function loadCard () {
+  loader.classList.remove('d-none')
   axios.get(endpoint)
   .then (response => {
    console.log(response.data);  
-   row.innerHTML = ''  
+   
    response.data.forEach(photo => {
     if (photoNumber < photoPerPage) {
       printCard(photo)
       photoNumber++
-    }
+    }    
    })
+   
   })
   
   .catch (error => {
    console.log(error);
    
   })
+
+  .finally(() => { loader.classList.add('d-none'); }); 
   
   function printCard(photo) {
    const {title, url} = photo
-   
-   row.innerHTML += `
+
+   const newCards = `
    <div class="col-lg-4 col-md-6 col-sm-12">
            <div class="user-card">
              <img src="./assets/img/pin.svg" alt="pin" class="pin">
@@ -56,7 +61,10 @@ function loadCard () {
                <p>${titleFormatting(title)}</p>
              </div>
            </div>
-         </div>   `
+   </div>
+   `
+   
+   row.insertAdjacentHTML ('afterbegin', newCards ) 
   }
   
  
@@ -68,16 +76,21 @@ function loadCard () {
    return titleWords.join(" ")
   }
 }
-
+ 
 function scrolling () {
     const scrollingPosition = window.innerHeight + window.scrollY;
-    const loadPosition = document.body.offsetHeight - 30
-
-    if (scrollingPosition >= loadPosition) {
-      photoPerPage += 6
-      photoNumber = 0
-      loadCard()
+    const loadPosition = document.body.offsetHeight - 100
+    
+    loader.classList.remove('d-none')
+    if (scrollingPosition >= loadPosition) {     
+      setTimeout(() => { 
+        photoPerPage += 6
+        photoNumber = 0
+        loadCard()
+        loader.classList.add('d-none')
+      }, 3000)
     }
+    
 }
 
 window.addEventListener('scroll', scrolling)
