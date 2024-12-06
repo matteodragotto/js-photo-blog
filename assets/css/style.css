@@ -55,6 +55,7 @@ main {
   transform: rotate(10deg);
   transition: all 0.3s ease-in-out 0s;
   box-shadow: rgba(0, 0, 0, 0.7) 4px 4px 6px;
+  z-index: 5;
 }
 
 .pin {
