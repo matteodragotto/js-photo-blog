@@ -69,8 +69,21 @@ function loadCard () {
   }
 }
 
+function scrolling () {
+    const scrollingPosition = window.innerHeight + window.scrollY;
+    const loadPosition = document.body.offsetHeight - 30
+
+    if (scrollingPosition >= loadPosition) {
+      photoPerPage += 6
+      photoNumber = 0
+      loadCard()
+    }
+}
+
+window.addEventListener('scroll', scrolling)
 
 
- loadCard();
+
+loadCard();
 
  
