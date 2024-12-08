@@ -1,4 +1,4 @@
-const endpoint = 'https://jsonplaceholder.typicode.com/photos?_limit=144'
+const endpoint = 'https://jsonplaceholder.typicode.com/photos?_limit=500'
 const row = document.querySelector('.row')
 const overlay = document.querySelector('.overlay')
 const overImage = document.querySelector('.over-image')
@@ -23,31 +23,34 @@ row.addEventListener('click', (event) => {
 
 let photoPerPage = 6;
 let photoNumber = 0;
+let allPhotos = []
 
 
-function loadCard () {
+function getCard () {
   loader.classList.remove('d-none')
   axios.get(endpoint)
   .then (response => {
-   console.log(response.data);  
-   
-   response.data.forEach(photo => {
-    if (photoNumber < photoPerPage) {
-      printCard(photo)
-      photoNumber++
-    }    
-   })
-   
+   allPhotos = response.data
+   console.log('my array', allPhotos);   
+   loadCard()
   })
-  
+
   .catch (error => {
    console.log(error);
    
   })
+}
 
-  .finally(() => { loader.classList.add('d-none'); }); 
+function loadCard () {
+  for (let photo of allPhotos) {
+    if (photoNumber < photoPerPage) {
+      printCard(photo)
+      photoNumber++
+    }    
+  } 
+}
   
-  function printCard(photo) {
+function printCard(photo) {
    const {title, url} = photo
 
    const newCards = `
@@ -65,29 +68,27 @@ function loadCard () {
    `
    
    row.insertAdjacentHTML ('afterbegin', newCards ) 
-  }
+}
   
  
-  function titleFormatting (title) {
+function titleFormatting (title) {
    let titleWords = title.split(" ")
    for (let i = 0; i < titleWords.length; i++) {
      titleWords[i] = titleWords[i][0].toUpperCase() + titleWords[i].substring(1).toLowerCase()
    }
    return titleWords.join(" ")
-  }
 }
+
  
 function scrolling () {
+  loader.classList.remove('d-none')
     const scrollingPosition = window.innerHeight + window.scrollY;
-    const loadPosition = document.body.offsetHeight - 100
-    
-    loader.classList.remove('d-none')
+    const loadPosition = document.body.offsetHeight - 1
     if (scrollingPosition >= loadPosition) {     
-      setTimeout(() => { 
-        photoPerPage += 6
-        photoNumber = 0
+      setTimeout(() => {   
         loadCard()
         loader.classList.add('d-none')
+        photoPerPage += 6
       }, 3000)
     }
     
@@ -97,6 +98,6 @@ window.addEventListener('scroll', scrolling)
 
 
 
-loadCard();
+getCard();
 
  
