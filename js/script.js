@@ -43,7 +43,8 @@ function getCard () {
 
 function loadCard () {
   for (let photo of allPhotos) {
-    if (photoNumber < photoPerPage) {
+    const {id} = photo
+    if (photoNumber < photoPerPage && id > photoNumber) {
       printCard(photo)
       photoNumber++
     }    
